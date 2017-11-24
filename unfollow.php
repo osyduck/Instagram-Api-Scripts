@@ -47,7 +47,7 @@ if (!file_exists("datacookies.ig")) {
         
         $cekfoll = instagram(1, $data->useragent, 'friendships/' . $userid . '/following/', $data->cookies);
         $cekfoll = json_decode($cekfoll[1]);
-        $cekfoll = array_slice($cekfoll->users,0,$jumlah);
+        $cekfoll = array_slice($cekfoll->users, 0, $jumlah);
         
         
         
@@ -59,11 +59,11 @@ if (!file_exists("datacookies.ig")) {
                     $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
                     echo "Sukses Unfollow @" . $ids->username . " Karena Belum Follback";
                 } else {
-                    echo "@" . $ids->username . " Sudah Follback";
+                    echo "@" . $ids->username . " Sudah Follback \n";
                 }
             } else {
                 $unfollow = instagram(1, $data->useragent, 'friendships/destroy/' . $ids->pk . "/", $data->cookies, generateSignature('{"user_id":"' . $ids->pk . '"}'));
-                echo "Sukses Unfollow @" . $ids->username;
+                echo "Sukses Unfollow @" . $ids->username . PHP_EOL;
             }
         }
         
