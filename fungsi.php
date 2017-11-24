@@ -113,4 +113,22 @@ function login($post_username, $post_password)
 	}
 	return $array;
 }
+
+function masuk($username, $password)
+{
+    $login = json_decode(login($username, $password));
+    if ($login->result == true) {
+        $file = fopen("datacookies.ig", "w");
+        fwrite($file, json_encode(array(
+            'cookies' => $login->cookies,
+            'useragent' => $login->useragent,
+            'device_id' => $login->devid,
+            'username' => $login->username
+        )));
+        fclose($file);
+        return "data berhasil diinput";
+    } else {
+        return false;
+    }
+}
 ?>
